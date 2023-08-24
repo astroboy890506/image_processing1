@@ -25,7 +25,8 @@ def main():
 
         # Display the uploaded image
         st.subheader("Uploaded Image")
-        st.image(cv2.cvtColor(uploaded_image, cv2.COLOR_BGR2RGB), use_column_width=True)
+        st.image((uploaded_image), use_column_width=True)
+        #st.image(cv2.cvtColor(uploaded_image, cv2.COLOR_BGR2RGB), use_column_width=True)
         #st.image(cv2.cvtColor(gray_uploaded_image, cv2.COLOR_BGR2RGB), use_column_width=True)
 
         # Display filter options
