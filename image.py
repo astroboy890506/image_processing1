@@ -20,8 +20,7 @@ def main():
 
     if uploaded_file is not None:
         img_array = np.fromstring(uploaded_file.read(), np.uint8)
-        uploaded_image = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        # gray_uploaded_image = cv2.cvtColor(uploaded_image, cv2.COLOR_BGR2GRAY)
+        uploaded_image = cv2.cvtColor(uploaded_image, cv2.COLOR_BGR2RGB)
 
         # Display the uploaded image
         st.subheader("Uploaded Image")
