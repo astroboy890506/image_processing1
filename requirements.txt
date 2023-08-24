@@ -3,3 +3,4 @@ opencv-python-headless==4.5.2.52
 matplotlib==3.4.3
 numpy
 streamlit-canvas
+click==7.1
