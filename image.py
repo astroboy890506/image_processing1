@@ -28,19 +28,19 @@ def main():
 
         if filter_type == "Averaging":
             # Apply Averaging filtering
-            blurAverage = cv2.blur(uploaded_image, (31, 31))
+            blurAverage = cv2.blur(uploaded_image, (25, 25))
             st.subheader("Averaging Filtering")
             st.image(blurAverage, channels="BGR", use_column_width=True)
 
         elif filter_type == "Gaussian":
             # Apply Gaussian filtering
-            blurGauss = cv2.GaussianBlur(uploaded_image, (31, 31), 0)
+            blurGauss = cv2.GaussianBlur(uploaded_image, (25, 25), 0)
             st.subheader("Gaussian Filtering")
             st.image(blurGauss, channels="BGR", use_column_width=True)
 
         elif filter_type == "Median":
             # Apply Median filtering
-            blurMedian = cv2.medianBlur(uploaded_image, 31)
+            blurMedian = cv2.medianBlur(uploaded_image, 25)
             st.subheader("Median Filtering")
             st.image(blurMedian, channels="BGR", use_column_width=True)
 
