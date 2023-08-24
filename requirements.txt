@@ -1,6 +1,6 @@
-streamlit==0.89.0
-opencv-python-headless==4.5.2.52
-matplotlib==3.4.3
+streamlit
+opencv-python-headless
+matplotlib
 numpy
 streamlit-canvas
 click
