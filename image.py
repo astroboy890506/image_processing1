@@ -19,10 +19,6 @@ def main():
         img_array = np.fromstring(uploaded_file.read(), np.uint8)
         uploaded_image = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
 
-        # Display the uploaded image
-        st.subheader("Uploaded Image")
-        st.image(uploaded_image, channels="BGR", use_column_width=True)
-
         # Display filter options and adjustments in the sidebar
         st.sidebar.subheader("Filter Options")
         filter_type = st.sidebar.selectbox("Select a filter", ["Averaging", "Gaussian", "Median"])
