@@ -27,7 +27,7 @@ def main():
         window_size = st.sidebar.slider("Window Size (Odd Number)", min_value=1, max_value=50, value=25, step=2)
 
         # Allow users to adjust the displayed image width
-        image_width = st.slider("Adjust Image Width", min_value=100, max_value=300, value=150)
+        image_width = st.slider("Adjust Image Width", min_value=100, max_value=300, value=300)
 
         if filter_type == "Averaging":
             # Apply Averaging filtering
