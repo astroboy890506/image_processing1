@@ -31,20 +31,47 @@ def main():
         if filter_type == "Averaging":
             # Apply Averaging filtering
             blurAverage = cv2.blur(uploaded_image, (window_size, window_size))
-            st.subheader("Averaging Filtering")
-            st.image(blurAverage, channels="BGR", width=image_width)
+
+            st.subheader("Image Comparison")
+            col1, col2 = st.beta_columns(2)
+
+            with col1:
+                st.subheader("Original Image")
+                st.image(uploaded_image, channels="BGR", width=image_width)
+
+            with col2:
+                st.subheader("Averaging Filtered Image")
+                st.image(blurAverage, channels="BGR", width=image_width)
 
         elif filter_type == "Gaussian":
             # Apply Gaussian filtering
             blurGauss = cv2.GaussianBlur(uploaded_image, (window_size, window_size), 0)
-            st.subheader("Gaussian Filtering")
-            st.image(blurGauss, channels="BGR", width=image_width)
+
+            st.subheader("Image Comparison")
+            col1, col2 = st.beta_columns(2)
+
+            with col1:
+                st.subheader("Original Image")
+                st.image(uploaded_image, channels="BGR", width=image_width)
+
+            with col2:
+                st.subheader("Gaussian Filtered Image")
+                st.image(blurGauss, channels="BGR", width=image_width)
 
         elif filter_type == "Median":
             # Apply Median filtering
             blurMedian = cv2.medianBlur(uploaded_image, window_size)
-            st.subheader("Median Filtering")
-            st.image(blurMedian, channels="BGR", width=image_width)
+
+            st.subheader("Image Comparison")
+            col1, col2 = st.beta_columns(2)
+
+            with col1:
+                st.subheader("Original Image")
+                st.image(uploaded_image, channels="BGR", width=image_width)
+
+            with col2:
+                st.subheader("Median Filtered Image")
+                st.image(blurMedian, channels="BGR", width=image_width)
 
 if __name__ == "__main__":
     main()
