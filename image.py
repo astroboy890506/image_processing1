@@ -6,7 +6,7 @@ def main():
     st.set_page_config(
         page_title="Image Filtering App",
         page_icon=":camera:",
-        layout="wide",  # Use the wide layout for better display of side-by-side images
+        layout="wide",
         initial_sidebar_state="expanded"
     )
 
@@ -23,28 +23,32 @@ def main():
         st.subheader("Uploaded Image")
         st.image(uploaded_image, channels="BGR", use_column_width=True)
 
-        # Display filter options in the sidebar
+        # Display filter options and adjustments in the sidebar
         st.sidebar.subheader("Filter Options")
         filter_type = st.sidebar.selectbox("Select a filter", ["Averaging", "Gaussian", "Median"])
 
-        # Allow users to adjust window size parameters
         window_size = st.sidebar.slider("Window Size", min_value=1, max_value=50, value=25)
+        
+        # Allow users to adjust the size of the uploaded image
+        image_scaling_factor = st.sidebar.slider("Image Scaling Factor", min_value=0.1, max_value=2.0, value=1.0)
+
+        scaled_image = cv2.resize(uploaded_image, None, fx=image_scaling_factor, fy=image_scaling_factor)
 
         if filter_type == "Averaging":
             # Apply Averaging filtering
-            blurAverage = cv2.blur(uploaded_image, (window_size, window_size))
+            blurAverage = cv2.blur(scaled_image, (window_size, window_size))
             st.subheader("Averaging Filtering")
             st.image(blurAverage, channels="BGR", use_column_width=True)
 
         elif filter_type == "Gaussian":
             # Apply Gaussian filtering
-            blurGauss = cv2.GaussianBlur(uploaded_image, (window_size, window_size), 0)
+            blurGauss = cv2.GaussianBlur(scaled_image, (window_size, window_size), 0)
             st.subheader("Gaussian Filtering")
             st.image(blurGauss, channels="BGR", use_column_width=True)
 
         elif filter_type == "Median":
             # Apply Median filtering
-            blurMedian = cv2.medianBlur(uploaded_image, window_size)
+            blurMedian = cv2.medianBlur(scaled_image, window_size)
             st.subheader("Median Filtering")
             st.image(blurMedian, channels="BGR", use_column_width=True)
 
