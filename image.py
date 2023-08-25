@@ -23,10 +23,11 @@ def main():
         st.sidebar.subheader("Filter Options")
         filter_type = st.sidebar.selectbox("Select a filter", ["Averaging", "Gaussian", "Median"])
 
-        window_size = st.sidebar.slider("Window Size", min_value=1, max_value=50, value=25)
+        # Allow users to adjust the window size with odd numbers only
+        window_size = st.sidebar.slider("Window Size (Odd Number)", min_value=1, max_value=50, value=25, step=2)
 
         # Allow users to adjust the displayed image width
-        image_width = st.slider("Adjust Image Width", min_value=100, max_value=300, value=300)
+        image_width = st.slider("Adjust Image Width", min_value=100, max_value=800, value=500)
 
         if filter_type == "Averaging":
             # Apply Averaging filtering
