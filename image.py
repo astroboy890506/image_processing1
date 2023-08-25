@@ -26,14 +26,14 @@ def main():
         window_size = st.sidebar.slider("Window Size", min_value=1, max_value=50, value=25)
 
         # Allow users to adjust the displayed image width
-        image_width = st.slider("Adjust Image Width", min_value=100, max_value=800, value=500)
+        image_width = st.slider("Adjust Image Width", min_value=100, max_value=300, value=300)
 
         if filter_type == "Averaging":
             # Apply Averaging filtering
             blurAverage = cv2.blur(uploaded_image, (window_size, window_size))
 
             st.subheader("Image Comparison")
-            col1, col2 = st.beta_columns(2)
+            col1, col2 = st.columns(2)
 
             with col1:
                 st.subheader("Original Image")
@@ -48,7 +48,7 @@ def main():
             blurGauss = cv2.GaussianBlur(uploaded_image, (window_size, window_size), 0)
 
             st.subheader("Image Comparison")
-            col1, col2 = st.beta_columns(2)
+            col1, col2 = st.columns(2)
 
             with col1:
                 st.subheader("Original Image")
@@ -63,7 +63,7 @@ def main():
             blurMedian = cv2.medianBlur(uploaded_image, window_size)
 
             st.subheader("Image Comparison")
-            col1, col2 = st.beta_columns(2)
+            col1, col2 = st.columns(2)
 
             with col1:
                 st.subheader("Original Image")
