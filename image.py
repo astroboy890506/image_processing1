@@ -30,23 +30,26 @@ def main():
 
         scaled_image = cv2.resize(uploaded_image, None, fx=image_scaling_factor, fy=image_scaling_factor)
 
+        # Allow users to adjust the displayed image width
+        image_width = st.slider("Adjust Image Width", min_value=100, max_value=800, value=500)
+
         if filter_type == "Averaging":
             # Apply Averaging filtering
             blurAverage = cv2.blur(scaled_image, (window_size, window_size))
             st.subheader("Averaging Filtering")
-            st.image(blurAverage, channels="BGR", use_column_width=True)
+            st.image(blurAverage, channels="BGR", width=image_width)
 
         elif filter_type == "Gaussian":
             # Apply Gaussian filtering
             blurGauss = cv2.GaussianBlur(scaled_image, (window_size, window_size), 0)
             st.subheader("Gaussian Filtering")
-            st.image(blurGauss, channels="BGR", use_column_width=True)
+            st.image(blurGauss, channels="BGR", width=image_width)
 
         elif filter_type == "Median":
             # Apply Median filtering
             blurMedian = cv2.medianBlur(scaled_image, window_size)
             st.subheader("Median Filtering")
-            st.image(blurMedian, channels="BGR", use_column_width=True)
+            st.image(blurMedian, channels="BGR", width=image_width)
 
 if __name__ == "__main__":
     main()
