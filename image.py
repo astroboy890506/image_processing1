@@ -324,7 +324,7 @@ def main():
         ])
 
         # Allow users to adjust the window size with odd numbers only
-        window_size = st.sidebar.slider("Window Size (Odd Number)", min_value=1, max_value=50, value=25, step=2)
+        window_size = st.sidebar.slider("Window Size (Odd Number)", min_value=1, max_value=100, value=25, step=2)
 
         # Allow users to adjust the standard deviation for the Gaussian filter
         std_dev = None
