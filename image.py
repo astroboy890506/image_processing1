@@ -285,6 +285,10 @@ import numpy as np
 import cv2
 from PIL import Image
 
+def bgr_to_rgb(image):
+    """ Convert BGR image to RGB. """
+    return cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
 def main():
     st.set_page_config(
         page_title="Image Filtering App",
@@ -302,6 +306,12 @@ def main():
         # Read the image file
         image = Image.open(uploaded_file)
         image = np.array(image)
+
+        # Convert the image to BGR format if necessary
+        if image.shape[-1] == 4:  # Check if image has an alpha channel (RGBA)
+            image = cv2.cvtColor(image, cv2.COLOR_RGBA2BGR)
+        else:
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
         # Display filter options and adjustments in the sidebar
         st.sidebar.subheader("Filter Options")
@@ -342,18 +352,27 @@ def main():
             # Apply Non-Local Means Denoising
             filtered_image = cv2.fastNlMeansDenoisingColored(image, None, 10, 10, 7, 21)
 
+        # Convert the filtered image to RGB for displaying
+        if filtered_image is not None:
+            filtered_image = bgr_to_rgb(filtered_image)
+
+        # Convert the original image to RGB for displaying
+        image = bgr_to_rgb(image)
+
         # Display the comparison
         st.subheader("Image Comparison")
         col1, col2 = st.columns(2)
 
         with col1:
             st.subheader("Original Image")
-            st.image(image, channels="BGR", width=image_width)
+            st.image(image, width=image_width)
 
         with col2:
             st.subheader(f"{filter_type} Filtered Image")
-            st.image(filtered_image, channels="BGR", width=image_width)
+            if filtered_image is not None:
+                st.image(filtered_image, width=image_width)
 
 if __name__ == "__main__":
     main()
+
 
